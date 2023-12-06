@@ -1,0 +1,6 @@
+venv
+__pycache__
+.postgres-data
+.th1_cache
+.grafana-storage
+.thermostat_cache

@@ -1,0 +1,4 @@
+th1@git+https://github.com/gvne/th1.git@0.1
+sqlalchemy
+requests
+pydantic
