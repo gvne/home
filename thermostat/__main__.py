@@ -48,15 +48,14 @@ def loop(client: th1.Client, params: Parameters):
         info = client.get_thermostat_info(params.thermostat_id, params.smartphone_id)
         if previous_time == info.date:
             continue
-          
-        # create the record
-        record = Record()
-        record.time = info.date
-        record.temperature_degc = info.temperature
-        record.humidity_percent = info.humidity
-        record.battery_percent = info.battery
-        record.consigne_degc = info.temperature_consigne
-        record.mode = info.mode
+        record = Record(
+            time = info.date,
+            temperature_degc = info.temperature, 
+            humidity_percent = info.humidity,
+            battery_percent = info.battery,
+            consigne_degc = info.temperature_consigne,
+            mode = info.mode
+        )
 
         # Deal with derogation
         if info.latest_derogation is not None:
@@ -74,11 +73,11 @@ def loop(client: th1.Client, params: Parameters):
             s = next(db)
 
             if s.query(Record).filter(Record.time == record.time).first() is not None:
-                logging.info(f"Record already exists")
+                logging.info("Record already exists")
             else:
                 s.add(record)
                 s.commit()
-                logging.info(f"Record properly addded")
+                logging.info("Record properly addded")
             previous_time = info.date
         except Exception as e:
             logging.error(f"Failed to add record: {e}")

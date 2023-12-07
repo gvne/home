@@ -32,9 +32,9 @@ services:
       - ./.postgres-data:/var/lib/postgresql/data
 
   grafana:
-    image: grafana/grafana-oss
+    image: grafana/grafana:10.2.2
     ports:
       - "3000:3000"
     volumes:
       - ./.grafana-storage:/var/lib/grafana
-      - ./grafana.ini:/etc/grafana/grafana.ini 
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini 
