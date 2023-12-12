@@ -81,7 +81,7 @@ def loop(params: Parameters):
                 s.commit()
                 logging.info("Record properly addded")
                 s.close()
-                time.sleep(POLLING_PERIOD.total_seconds())
+            time.sleep(POLLING_PERIOD.total_seconds())
         except Exception as e:
             logging.error(f"Failed to add record: {e}")
             time.sleep(ERROR_SLEEP_DURATION.total_seconds())
@@ -107,7 +107,9 @@ def main() -> int:
 
     parameters = Parameters.from_cache(param_cache)
     if args.latitude and args.longitude:
-        parameters.coordinates = schema.Coordinates(lat=args.latitude, lon=args.longitude)
+        parameters.coordinates = schema.Coordinates(
+            lat=args.latitude, lon=args.longitude
+        )
         parameters.to_cache(param_cache)
 
     if args.key:
