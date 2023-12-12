@@ -107,7 +107,7 @@ def main() -> int:
 
     parameters = Parameters.from_cache(param_cache)
     if args.latitude and args.longitude:
-        parameters.coordinates = s.Coordinates(lat=args.latitude, lon=args.longitude)
+        parameters.coordinates = schema.Coordinates(lat=args.latitude, lon=args.longitude)
         parameters.to_cache(param_cache)
 
     if args.key:
