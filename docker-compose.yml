@@ -21,6 +21,16 @@ services:
       target: thermostat
     volumes:
       - ./.thermostat_cache:/cache
+    restart: always
+
+  weather:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: weather
+    volumes:
+      - ./.weather_cache:/cache
+    restart: always
 
   database:
     image: timescale/timescaledb:latest-pg15
@@ -30,6 +40,7 @@ services:
       - POSTGRES_DB=home
     volumes:
       - ./.postgres-data:/var/lib/postgresql/data
+    restart: always
 
   grafana:
     image: grafana/grafana:10.2.2
@@ -38,3 +49,5 @@ services:
     volumes:
       - ./.grafana-storage:/var/lib/grafana
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini 
+    restart: always
+    

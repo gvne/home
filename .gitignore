@@ -4,3 +4,4 @@ __pycache__
 .th1_cache
 .grafana-storage
 .thermostat_cache
+.weather_cache

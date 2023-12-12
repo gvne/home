@@ -2,6 +2,10 @@
 
 This repository tracks my personal home automation (more home monitoring for now). 
 
+## Setup overview
+
+TODO
+
 ## Thermostat
 
 Initialize the configuration

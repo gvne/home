@@ -31,3 +31,10 @@ RUN python3.11 -m pip install -r requirements.txt
 COPY thermostat thermostat
 
 ENTRYPOINT [ "python3.11", "-m", "thermostat" ]
+
+FROM base AS weather
+COPY weather/requirements.txt .
+RUN python3.11 -m pip install -r requirements.txt
+COPY weather weather
+
+ENTRYPOINT [ "python3.11", "-m", "weather" ]
