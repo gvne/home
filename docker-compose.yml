@@ -32,6 +32,13 @@ services:
       - ./.weather_cache:/cache
     restart: always
 
+  aggregate:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aggregate
+    restart: always
+
   database:
     image: timescale/timescaledb:latest-pg15
     environment:

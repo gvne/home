@@ -38,3 +38,10 @@ RUN python3.11 -m pip install -r requirements.txt
 COPY weather weather
 
 ENTRYPOINT [ "python3.11", "-m", "weather" ]
+
+FROM base AS aggregate
+COPY aggregate/requirements.txt .
+RUN python3.11 -m pip install -r requirements.txt
+COPY aggregate aggregate
+
+ENTRYPOINT [ "python3.11", "-m", "aggregate" ]
